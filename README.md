@@ -7,7 +7,7 @@ Communication protocols for OT2 and potentiostat are not supported by PLC, so th
 See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
 ## Information
-'''
+```
 codes <br>
 ├── 251215_ALBATROSS.smc2: code for PLC (sysmac) <br>
 ├── 251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook) <br>
@@ -25,7 +25,7 @@ data <br>
     ├── EIS: cycling results for EIS test cells <br>
     ├── repeatability_albatross: cycling results for repeatability test for albatross <br>
     └── repeatability_manual: cycling results for repeatability test for manual assembly <br>
-'''
+```
 
 ## Communication environment
 <img width="1914" height="1045" alt="Image" src="https://github.com/user-attachments/assets/01253eb2-7471-453c-8768-3564dce428d9" />
