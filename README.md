@@ -8,23 +8,23 @@ See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
 ## Information
 ```
-codes <br>
-├── 251215_ALBATROSS.smc2: code for PLC (sysmac) <br>
-├── 251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook) <br>
-└── 250616_EIS automation.ipynb: Cycling channel status checking and EIS automation process code for PC (jupyter notebook) <br>
+codes
+├── 251215_ALBATROSS.smc2: code for PLC (sysmac)
+├── 251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook)
+└── 250616_EIS automation.ipynb: Cycling channel status checking and EIS automation process code for PC (jupyter notebook)
 
-data <br>
-├── EIS <br>
-│   ├── 0.5C <br>
-│   │   ├── example.csv: data with respect to time, voltage, current, phase, modulus, frequency <br>
-│   │   └── example_Result.csv: data of fitted data with R1, R2, R3, R4, Q1, Q2, Q3, Q4, s <br>
-│   ├── 1C <br>
-│   ├── 2C <br>
-│   └── 3C <br>
-└── cycling <br>
-    ├── EIS: cycling results for EIS test cells <br>
-    ├── repeatability_albatross: cycling results for repeatability test for albatross <br>
-    └── repeatability_manual: cycling results for repeatability test for manual assembly <br>
+data
+├── EIS
+│   ├── 0.5C
+│   │   ├── example.csv: data with respect to time, voltage, current, phase, modulus, frequency
+│   │   └── example_Result.csv: data of fitted data with R1, R2, R3, R4, Q1, Q2, Q3, Q4, s
+│   ├── 1C
+│   ├── 2C
+│   └── 3C
+└── cycling
+    ├── EIS: cycling results for EIS test cells
+    ├── repeatability_albatross: cycling results for repeatability test for albatross
+    └── repeatability_manual: cycling results for repeatability test for manual assembly
 ```
 
 ## Communication environment
