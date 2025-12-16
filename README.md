@@ -4,7 +4,7 @@
 ALBATROSS uses PLC (NX102-9000, Omron) for integration of devices. <br>
 Main PC communicates with PLC by using OPC-UA communication protocol. <br>
 Communication protocols for OT2 and potentiostat are not supported by PLC, so they are directly communicate with PC. <br>
-See [the manuscript in Arxiv]
+See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
 ## Code information
 251215_ALBATROSS.smc2: code for PLC (sysmac) <br>
