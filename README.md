@@ -8,7 +8,7 @@ See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
 ## Code information
 251215_ALBATROSS.smc2: code for PLC (sysmac) <br>
-251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook)
+251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook) <br>
 250616_EIS automation.ipynb: Cycling channel status checking and EIS automation process code for PC (jupyter notebook)
 
 ## Communication environment
