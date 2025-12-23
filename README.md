@@ -25,6 +25,8 @@ data
     ├── EIS: cycling results for EIS test cells
     ├── repeatability_albatross: cycling results for repeatability test for albatross
     └── repeatability_manual: cycling results for repeatability test for manual assembly
+
+ALBATROSS.mp4: a video demonstrating albatross system
 ```
 
 ## Communication environment
