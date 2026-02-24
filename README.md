@@ -1,9 +1,28 @@
 # ALBATROSS
 **A**utomated **L**i-ion **BA**ttery **T**esting **RO**bot **S**y**S**tem (**ALBATROSS**)
 
-ALBATROSS uses PLC (NX102-9000, Omron) for integration of devices. <br>
-Main PC communicates with PLC by using OPC-UA communication protocol. <br>
+ALBATROSS is an automated platform that integrates electrolyte formulation, coin-cell assembly, cycling, and impedance evaluation. <br>
+The system is designed to enable high-throughput electrolyte screening with the objective of acquiring large volumes of reliable experimental data. <br>
+It is installed inside a glovebox equipped with temperature monitoring and control, thereby allowing systematic exploration of organic electrolytes that are sensitive to ambient environmental conditions. <br>
+
+## Hardware Setup
+a 6-axis robot arm (xArm6, UFactory) with electric gripper (xArm Gripper, UFactory)
+a liquid handler (OT-2, Opentrons) with 300 ul and 1000 ul micropipette (P300, P1000)
+an automated coin cell crimper (MSK-160E, MTI)
+linear actuators with different stroke (12LF-12F-27 and 12LF-17F-40, Mightyzap)
+stepper motors (C-42STM03, Misumi), and photo sensors (C-MSX674N, Misumi)
+48 channels of potentiostat (CT-4008T-5V50mA, Neware)
+2 channels of impedence measurement device (SP-150e, Biologics)
+
+## OS Setup
+ALBATROSS uses programmable logic controller (PLC; NX102-9000, Omron) for integration of devices. <br>
+The PLC interprets the parameters transmitted from the main PC, manages system-level corrdination, monitors device status, and sends commend to the connected devices. <br>
+Main PC communicates with PLC by using OPC UA communication protocol. <br>
+To do so, two jupyter notebook codes are utilized. <br>
+ 1. Cell_assembly.ipynb
+ 2. EIS_automation.ipynb 
 Communication protocols for OT2 and potentiostat are not supported by PLC, so they are directly communicate with PC. <br>
+
 See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
 ## Information
