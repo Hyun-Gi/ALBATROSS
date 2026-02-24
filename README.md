@@ -19,9 +19,11 @@ ALBATROSS uses programmable logic controller (PLC; NX102-9000, Omron) for integr
 The PLC interprets the parameters transmitted from the main PC, manages system-level corrdination, monitors device status, and sends commend to the connected devices. <br>
 Main PC communicates with PLC by using OPC UA communication protocol. <br>
 To do so, two jupyter notebook codes are utilized. <br>
+
  1. Cell_assembly.ipynb
- 2. EIS_automation.ipynb <br>
-Communication protocols for OT2 and potentiostat are not supported by PLC, so they are directly communicate with PC. <br>
+ 2. EIS_automation.ipynb
+
+Communication protocols for OT-2, potentiostat, and EIS device are not supported by PLC, so they are directly communicate with PC by using API. <br>
 
 See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 
@@ -29,8 +31,8 @@ See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 ```
 codes
 ├── 251215_ALBATROSS.smc2: code for PLC (sysmac)
-├── 251113_demo_cell_assembly.ipynb: cell-assembly process code for PC (jupyter notebook)
-└── 250616_EIS automation.ipynb: Cycling channel status checking and EIS automation process code for PC (jupyter notebook)
+├── Cell_assembly.ipynb: cell-assembly process code
+└── EIS automation.ipynb: Cycling channel status checking and EIS automation process code
 
 data
 ├── EIS
