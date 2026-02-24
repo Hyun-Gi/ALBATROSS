@@ -6,13 +6,13 @@ The system is designed to enable high-throughput electrolyte screening with the 
 It is installed inside a glovebox equipped with temperature monitoring and control, thereby allowing systematic exploration of organic electrolytes that are sensitive to ambient environmental conditions. <br>
 
 ## Hardware Setup
-a 6-axis robot arm (xArm6, UFactory) with electric gripper (xArm Gripper, UFactory) <br>
-a liquid handler (OT-2, Opentrons) with 300 ul and 1000 ul micropipette (P300, P1000) <br>
-an automated coin cell crimper (MSK-160E, MTI) <br>
-linear actuators with different stroke (12LF-12F-27 and 12LF-17F-40, Mightyzap) <br>
-stepper motors (C-42STM03, Misumi), and photo sensors (C-MSX674N, Misumi) <br>
-48 channels of potentiostat (CT-4008T-5V50mA, Neware) <br>
-2 channels of impedence measurement device (SP-150e, Biologics) <br>
+- a 6-axis robot arm (xArm6, UFactory) with electric gripper (xArm Gripper, UFactory) <br>
+- a liquid handler (OT-2, Opentrons) with 300 ul and 1000 ul micropipette (P300, P1000) <br>
+- an automated coin cell crimper (MSK-160E, MTI) <br>
+- linear actuators with different stroke (12LF-12F-27 and 12LF-17F-40, Mightyzap) <br>
+- stepper motors (C-42STM03, Misumi), and photo sensors (C-MSX674N, Misumi) <br>
+- 48 channels of potentiostat (CT-4008T-5V50mA, Neware) <br>
+- 2 channels of impedence measurement device (SP-150e, Biologics) <br>
 
 ## OS Setup
 ALBATROSS uses programmable logic controller (PLC; NX102-9000, Omron) for integration of devices. <br>
@@ -31,6 +31,10 @@ See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 ## Communication environment
 <img width="1914" height="1045" alt="Image" src="https://github.com/user-attachments/assets/01253eb2-7471-453c-8768-3564dce428d9" />
 To parallelly activate the modules, PLC was used, which can support various types of communication simultaneously. The liquid handler and potentiostat have their own communication method, so they communicate with the main PC directly.
+
+## Software requirement
+python 3.10
+sysmac studio
 
 ## Code and Dataset
 ```
