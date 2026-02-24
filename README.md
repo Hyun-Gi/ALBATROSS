@@ -26,8 +26,13 @@ To do so, two jupyter notebook codes are utilized. <br>
 Communication protocols for OT-2, potentiostat, and EIS device are not supported by PLC, so they are directly communicate with PC by using API. <br>
 
 See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
+<img width="1515" height="1125" alt="Image" src="https://github.com/user-attachments/assets/658b80ce-cf44-4784-810f-46a8dc5b196a" />
 
-## Information
+## Communication environment
+<img width="1914" height="1045" alt="Image" src="https://github.com/user-attachments/assets/01253eb2-7471-453c-8768-3564dce428d9" />
+To parallelly activate the modules, PLC was used, which can support various types of communication simultaneously. The liquid handler and potentiostat have their own communication method, so they communicate with the main PC directly.
+
+## Code and Dataset
 ```
 codes
 ├── 251215_ALBATROSS.smc2: code for PLC (sysmac)
@@ -49,7 +54,3 @@ data
 
 ALBATROSS.mp4: a video demonstrating albatross system
 ```
-
-## Communication environment
-<img width="1914" height="1045" alt="Image" src="https://github.com/user-attachments/assets/01253eb2-7471-453c-8768-3564dce428d9" />
-To parallelly activate the modules, PLC was used, which can support various types of communication simultaneously. The liquid handler and potentiostat have their own communication method, so they communicate with the main PC directly.
