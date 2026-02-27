@@ -34,8 +34,7 @@ To parallelly activate the modules, PLC was used, which can support various type
 
 ## Software requirement
 python version: 3.10
-easy-biologic: 
-sysmac studio
+Detail python environment can be found in albatross.yaml
 
 ## Code and Dataset
 ```
