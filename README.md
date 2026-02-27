@@ -18,10 +18,11 @@ It is installed inside a glovebox equipped with temperature monitoring and contr
 ALBATROSS uses programmable logic controller (PLC; NX102-9000, Omron) for integration of devices. <br>
 The PLC interprets the parameters transmitted from the main PC, manages system-level corrdination, monitors device status, and sends commend to the connected devices. <br>
 Main PC communicates with PLC by using OPC UA communication protocol. <br>
-To do so, two jupyter notebook codes are utilized. <br>
+To do so, two jupyter notebook codes and one PLC code are utilized. <br>
 
  1. Cell_assembly.ipynb
  2. EIS_automation.ipynb
+ 3. ALBATROSS.smc2
 
 Communication protocols for OT-2, potentiostat, and EIS device are not supported by PLC, so they are directly communicate with PC by using API. <br>
 
