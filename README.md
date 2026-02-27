@@ -33,8 +33,8 @@ See [the manuscript in Arxiv](http://arxiv.org/abs/2512.13198)
 To parallelly activate the modules, PLC was used, which can support various types of communication simultaneously. The liquid handler and potentiostat have their own communication method, so they communicate with the main PC directly.
 
 ## Software requirement
-python version: 3.10
-Detail python environment can be found in albatross.yaml
+python version: 3.10 <br>
+Detail python environment can be found in albatross.yaml <br>
 
 ## Code and Dataset
 ```
