@@ -10,7 +10,8 @@ In the Main folder, there are two folders, one with the name "cycling" is for th
 
 The other with the name "EIS" includes: <br>
 1. 40 csv files of raw data of EIS measurement <br>
-2. 40 csv files of fitted data by using EC-Lab software <br>
+2. 40 csv files of fitted data by using EC-Lab software (end with the name "Result.csv") <br>
+3. temperature data <br>
 
 The EIS results have the name including the time of measurement <br>
 (ex. 260120064432_46(6-7).csv means the cell in the 46th channel (or (6-7) channel) was measured at 2026-01-20 06:44:32)
