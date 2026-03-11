@@ -40,22 +40,32 @@ Detail python environment can be found in "albatross.yaml" <br>
 ## Code and Dataset
 ```
 codes
-├── 251215_ALBATROSS.smc2: code for PLC (sysmac)
-├── Cell_assembly.ipynb: cell-assembly process code
-└── EIS automation.ipynb: Cycling channel status checking and EIS automation process code
+├── ALBATROSS.smc2: code for PLC (sysmac)
+├── cell_assembly.ipynb: cell-assembly process code
+└── EIS_automation.ipynb: Cycling channel status checking and EIS automation process code
 
 data
-├── EIS
-│   ├── 0.5C
-│   │   ├── example.csv: data with respect to time, voltage, current, phase, modulus, frequency
-│   │   └── example_Result.csv: data of fitted data with R1, R2, R3, R4, Q1, Q2, Q3, Q4, s
-│   ├── 1C
-│   ├── 2C
-│   └── 3C
-└── cycling
-    ├── EIS: cycling results for EIS test cells
-    ├── repeatability_albatross: cycling results for repeatability test for albatross
-    └── repeatability_manual: cycling results for repeatability test for manual assembly
+├── Main: Results using cathodes supplied by Wellcos
+    ├── EIS
+        ├── 1C
+            ├── example.csv: data with respect to time, voltage, current, phase, modulus, frequency
+            └── example_Result.csv: data of fitted data with R1, R2, R3, R4, Q1, Q2, Q3, Q4, s
+        ├── 2C
+        ├── 3C
+        ├── rest
+        └── rest_variation: Impedance measurement results of one cell with differnet resting time
+    
+    ├── cycling
+        ├── repeatability_albatross: cycling results of 80 test cells for repeatability test of discharge capacity (ALBATROSS)
+        ├── repeatability_albatross_EIS: cycling results of 40 test cells for repeatability test of EIS measurement (ALBATROSS)
+        └── repeatability_manual: cycling results for 40 test cells for repeatability test of discharge capacity (manual assembly)
 
-ALBATROSS.mp4: a video demonstrating albatross system
+
+├── Sub: Results using cathodes supplied by MTI
+    ├── repeatability_albatross: cycling results of 40 test cells for repeatability test of discharge capacity (ALBATROSS)
+    └── repeatability_manual: cycling results for 40 test cells for repeatability test of discharge capacity (manual assembly)
+
+├── ALBATROSS.mp4: a video demonstrating albatross system
+
+└── albatross.yaml: information of ALBATROSS python environment
 ```
