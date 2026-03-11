@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1116521152.svg)](https://doi.org/10.5281/zenodo.18959775)
+
 # ALBATROSS
 **A**utomated **L**i-ion **BA**ttery **T**esting **RO**bot **S**y**S**tem (**ALBATROSS**)
 
