@@ -1,0 +1,116 @@
+# ============================================================
+# ALBATROSS GUI 설정
+# 실제 장비 연결 시 app.simulation 을 false 로.
+# GUI 는 PLC 에 직접 붙지 않고 게이트웨이(:4841)를 통해 접근한다.
+# ============================================================
+
+app:
+  simulation: true          # true: 장비 없이 GUI 실행 / false: 실제 연결
+  read_only: false          # true: 실기 연결 점검용 — 연결·상태 읽기만, 모든 모션/쓰기 차단
+  log_dir: "logs"           # 하루치 로그 저장 폴더 (파일명: 날짜_탭_log.txt, 예 260701_OT2_log.txt)
+
+neware:                      # 충방전기 (TCP)
+  host: "127.0.0.1"
+  port: 502
+  dev_ip: "192.168.1.2"
+  devtype: 25
+  devid: 40
+  channels: 48
+
+plc:                        # PLC 직접 연결 정보 (게이트웨이 미사용 시에만)
+  url: "opc.tcp://192.168.1.100:4840"
+  namespace: 4
+  jig_channels: 48
+  eis_channels: 2
+
+gateway:                    # GUI 가 OPC UA 에 접근하는 경로
+  use_gateway: true
+  url: "opc.tcp://127.0.0.1:4841/gateway/"
+  uri_self:   "http://lab/gateway"
+  uri_mirror: "http://lab/gateway/PLC"
+  uri_cmd:    "http://lab/gateway/Cmd"
+  ns_self_fallback: 2
+  ns_mirror_fallback: 3
+  ns_cmd_fallback: 4
+
+biologic:                   # 포텐셔스탯 (EIS)
+  ip: "192.168.1.128"
+  easy_biologic_path: "C:/Users/HOME/easy-biologic/src"
+  eis_channel: 1
+
+robot:                      # Modbus 조립 로봇 (셀/플레이트 이송)
+  enabled: true
+  ip: "192.168.1.196"
+  port: 502
+
+ot2:                        # Opentrons OT-2 (SSH; 게이트웨이 무관)
+  enabled: true
+  ip: "192.168.1.6"
+  ssh_key: "C:/Users/HOME/ot2_ssh_key"
+  ssh_key_password: "1234"
+  recipe_csv: "C:/Users/HOME/Desktop/KAIST/LGES/Sodium_2year/OURS_Bayesian/Sodium_OURS_final.csv"
+  # 가열(온도 설정) 사용 시 — 염용액을 plate10 에서
+  plate_mapping_heated:
+    pure_PC: "plate7['A1']"
+    pure_EMC: "plate7['A2']"
+    pure_DEGDME: "plate7['A3']"
+    pure_DME: "plate7['A4']"
+    pure_CME: "plate7['B1']"
+    pure_DPE: "plate7['B2']"
+    NaPF6_in_PC: "plate10['A1']"
+    NaPF6_in_EMC: "plate10['A5']"
+    NaPF6_in_DEGDME: "plate10['C1']"
+    NaPF6_in_DME: "plate10['C5']"
+  # 가열 미사용 — 염용액을 plate5 에서
+  plate_mapping_room:
+    pure_PC: "plate7['A1']"
+    pure_EMC: "plate7['A2']"
+    pure_DEGDME: "plate7['A3']"
+    pure_DME: "plate7['A4']"
+    pure_CME: "plate7['B1']"
+    pure_DPE: "plate7['B2']"
+    NaPF6_in_PC: "plate5['A1']"
+    NaPF6_in_EMC: "plate5['A5']"
+    NaPF6_in_DEGDME: "plate5['C1']"
+    NaPF6_in_DME: "plate5['C5']"
+  offsets:                  # 라벨웨어 보정값 (불 켜진 뒤 적용)
+    - "tiprack_1.set_offset(x=-0.30, y=1.20, z=0.00)"
+    - "tiprack_2.set_offset(x=-0.30, y=1.20, z=0.00)"
+    - "plate2.set_offset(x=0.2, y=1.5, z=2.00)"
+    - "wellplate.set_offset(x=0.2, y=1.1, z=0.00)"
+    - "temp_labware.set_offset(x=1.5, y=1.3, z=-2)"
+    - "plate11.set_offset(x=0, y=0, z=6)"
+    - "plate7.set_offset(x=0, y=0, z=6)"
+    - "plate5.set_offset(x=0, y=0, z=1)"
+    - "plate10.set_offset(x=0, y=0, z=-3)"
+  solvent_info:             # 각 용매 stock 용액의 NaPF6 농도(M) — 배합 계산용
+    PC: 3
+    EMC: 2.5
+    DME: 2.5
+    DEGDME: 2.5
+    CME: 0
+    DPE: 0
+  plate_dims:               # 플레이트 격자 크기 (빈 칸도 표시) — rows=행 수(A부터), cols=열 수(1부터)
+    plate7:  {rows: 3, cols: 4}   # A~C, 1~4
+    plate5:  {rows: 4, cols: 5}   # A~D, 1~5
+    plate10: {rows: 4, cols: 5}   # A~D, 1~5
+
+assembly:                   # 셀 조립 자동화 기본값
+  dispense: [70, 90]        # 전해액 흡입 µL / 토출 µL
+  dst_well: "plate2['A1']"  # 분주 목적 웰
+  jig_count: 48             # 사이클러 jig 개수 (jig_list = 0 .. jig_count-1)
+  jig_exclude: []           # 제외할 jig 번호 (예: [6] — 고장난 지그)
+
+vision:                     # 조립 부품 비전 검사 (step_check)
+  enabled: true             # false 면 검사 완전 생략
+  # ── 셀 조립 탭 라이브 카메라 ──
+  camera_index: 0           # 로컬 웹캠 인덱스 (RTSP 미사용 시; camera_test.py 로 확인)
+  camera_ip: ""             # ProdTracker(Hikvision) RTSP IP. 채우면 웹캠 대신 RTSP 사용. 예: 192.168.1.64
+  camera_user: "admin"      # RTSP 계정
+  camera_pass: ""           # RTSP 비밀번호 — 여기에만 저장(코드에 하드코딩 금지)
+  camera_channel: "102"     # RTSP 스트림 채널 (Streaming/Channels/<채널>; 102=서브스트림)
+  snapshot_dir: "D:/ProdTracker_Images/manual"   # 📸 '지금 화면 저장' 폴더
+  prodtracker_dir: "D:/ProdTracker_Images"        # prodtracker 패널: 이 폴더의 최신 이미지 자동 표시(하위폴더 포함)
+  module_dir: ""            # albatross_step_check.py 가 있는 폴더 (비우면 검사 SKIP)
+  # 예: "C:/Users/HOME/Desktop/KAIST/LGES/Sodium_2year/ALBATROSS_Monitor"
+  # 주의: 그 파일의 Slack 웹훅/토큰은 하드코딩돼 있음 → 추후 여기로 이전 권장

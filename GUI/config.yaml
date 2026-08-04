@@ -1,0 +1,116 @@
+# ============================================================
+# ALBATROSS GUI configuration
+# Set app.simulation to false when connecting to real hardware.
+# The GUI never attaches to the PLC directly; it goes through the gateway (:4841).
+# ============================================================
+
+app:
+  simulation: true          # true: run the GUI without hardware / false: connect for real
+  read_only: false          # true: for checking a live connection — connection/status reads only, all motion/writes blocked
+  log_dir: "logs"           # folder holding one day's logs (file name: date_tab_log.txt, e.g. 260701_OT2_log.txt)
+
+neware:                      # cycler (TCP)
+  host: "127.0.0.1"
+  port: 502
+  dev_ip: "192.168.1.2"
+  devtype: 25
+  devid: 40
+  channels: 48
+
+plc:                        # direct PLC connection info (only when the gateway is not used)
+  url: "opc.tcp://192.168.1.100:4840"
+  namespace: 4
+  jig_channels: 48
+  eis_channels: 2
+
+gateway:                    # the path the GUI takes to reach OPC UA
+  use_gateway: true
+  url: "opc.tcp://127.0.0.1:4841/gateway/"
+  uri_self:   "http://lab/gateway"
+  uri_mirror: "http://lab/gateway/PLC"
+  uri_cmd:    "http://lab/gateway/Cmd"
+  ns_self_fallback: 2
+  ns_mirror_fallback: 3
+  ns_cmd_fallback: 4
+
+biologic:                   # potentiostat (EIS)
+  ip: "192.168.1.128"
+  easy_biologic_path: "C:/Users/HOME/easy-biologic/src"
+  eis_channel: 1
+
+robot:                      # Modbus assembly robot (cell/plate transfer)
+  enabled: true
+  ip: "192.168.1.196"
+  port: 502
+
+ot2:                        # Opentrons OT-2 (SSH; independent of the gateway)
+  enabled: true
+  ip: "192.168.1.6"
+  ssh_key: "C:/Users/HOME/ot2_ssh_key"
+  ssh_key_password: "1234"
+  recipe_csv: "C:/Users/HOME/Desktop/KAIST/LGES/Sodium_2year/OURS_Bayesian/Sodium_OURS_final.csv"
+  # when heating (temperature control) is used — salt solutions come from plate10
+  plate_mapping_heated:
+    pure_PC: "plate7['A1']"
+    pure_EMC: "plate7['A2']"
+    pure_DEGDME: "plate7['A3']"
+    pure_DME: "plate7['A4']"
+    pure_CME: "plate7['B1']"
+    pure_DPE: "plate7['B2']"
+    NaPF6_in_PC: "plate10['A1']"
+    NaPF6_in_EMC: "plate10['A5']"
+    NaPF6_in_DEGDME: "plate10['C1']"
+    NaPF6_in_DME: "plate10['C5']"
+  # no heating — salt solutions come from plate5
+  plate_mapping_room:
+    pure_PC: "plate7['A1']"
+    pure_EMC: "plate7['A2']"
+    pure_DEGDME: "plate7['A3']"
+    pure_DME: "plate7['A4']"
+    pure_CME: "plate7['B1']"
+    pure_DPE: "plate7['B2']"
+    NaPF6_in_PC: "plate5['A1']"
+    NaPF6_in_EMC: "plate5['A5']"
+    NaPF6_in_DEGDME: "plate5['C1']"
+    NaPF6_in_DME: "plate5['C5']"
+  offsets:                  # labware offsets (applied after the lights come on)
+    - "tiprack_1.set_offset(x=-0.30, y=1.20, z=0.00)"
+    - "tiprack_2.set_offset(x=-0.30, y=1.20, z=0.00)"
+    - "plate2.set_offset(x=0.2, y=1.5, z=2.00)"
+    - "wellplate.set_offset(x=0.2, y=1.1, z=0.00)"
+    - "temp_labware.set_offset(x=1.5, y=1.3, z=-2)"
+    - "plate11.set_offset(x=0, y=0, z=6)"
+    - "plate7.set_offset(x=0, y=0, z=6)"
+    - "plate5.set_offset(x=0, y=0, z=1)"
+    - "plate10.set_offset(x=0, y=0, z=-3)"
+  solvent_info:             # NaPF6 concentration (M) of each solvent stock solution — used for mixing calculations
+    PC: 3
+    EMC: 2.5
+    DME: 2.5
+    DEGDME: 2.5
+    CME: 0
+    DPE: 0
+  plate_dims:               # plate grid size (empty wells are shown too) — rows=row count (from A), cols=column count (from 1)
+    plate7:  {rows: 3, cols: 4}   # A~C, 1~4
+    plate5:  {rows: 4, cols: 5}   # A~D, 1~5
+    plate10: {rows: 4, cols: 5}   # A~D, 1~5
+
+assembly:                   # defaults for cell assembly automation
+  dispense: [70, 90]        # electrolyte aspirate µL / dispense µL
+  dst_well: "plate2['A1']"  # destination well for dispensing
+  jig_count: 48             # number of cycler jigs (jig_list = 0 .. jig_count-1)
+  jig_exclude: []           # jig numbers to exclude (e.g. [6] — a broken jig)
+
+vision:                     # vision inspection of assembly parts (step_check)
+  enabled: true             # if false, inspection is skipped entirely
+  # ── live camera on the cell assembly tab ──
+  camera_index: 0           # local webcam index (when RTSP is not used; check with camera_test.py)
+  camera_ip: ""             # ProdTracker (Hikvision) RTSP IP. If filled in, RTSP is used instead of the webcam. e.g. 192.168.1.64
+  camera_user: "admin"      # RTSP account
+  camera_pass: ""           # RTSP password — store it only here (never hard-code it in the source)
+  camera_channel: "102"     # RTSP stream channel (Streaming/Channels/<channel>; 102=substream)
+  snapshot_dir: "D:/ProdTracker_Images/manual"   # 📸 folder for 'save current view'
+  prodtracker_dir: "D:/ProdTracker_Images"        # prodtracker panel: automatically shows the newest image in this folder (subfolders included)
+  module_dir: ""            # folder containing albatross_step_check.py (leave empty to SKIP inspection)
+  # e.g. "C:/Users/HOME/Desktop/KAIST/LGES/Sodium_2year/ALBATROSS_Monitor"
+  # note: the Slack webhook/token in that file is hard-coded → moving it here is recommended
